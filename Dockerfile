@@ -1,28 +1,18 @@
-# Étape 1 : Choisir une image de base
-FROM <base-image>:<tag>
+# Étape 1 : Utiliser une image Python légère
+FROM python:3.10-slim
 
-# Étape 2 : Ajouter des métadonnées (optionnel)
-LABEL maintainer="your-email@example.com"
-LABEL version="1.0"
-LABEL description="Description of the application."
-
-# Étape 3 : Définir le répertoire de travail
+# Étape 2 : Définir le répertoire de travail dans le conteneur
 WORKDIR /app
 
-# Étape 4 : Copier les fichiers nécessaires dans l'image
-COPY . /app
+# Étape 3 : Copier les fichiers nécessaires
+COPY requirements.txt requirements.txt
+COPY simple-api.py simple-api.py
 
-# Étape 5 : Installer les dépendances
-RUN <install-commands>
+# Étape 4 : Installer les dépendances
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Étape 6 : Définir des variables d'environnement (optionnel)
-ENV ENV_VARIABLE=value
+# Étape 5 : Exposer le port pour FastAPI
+EXPOSE 8000
 
-# Étape 7 : Exposer un ou plusieurs ports
-EXPOSE <port>
-
-# Étape 8 : Nettoyage (optionnel, pour réduire la taille de l'image)
-RUN rm -rf /var/lib/apt/lists/*
-
-# Étape 9 : Définir la commande d’exécution
-CMD ["<command>", "arg1", "arg2"]
+# Étape 6 : Lancer le serveur Uvicorn
+CMD ["uvicorn", "simple-api:app", "--host", "0.0.0.0", "--port", "8000"]
