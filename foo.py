@@ -1,1 +1,3 @@
-print("hello from foo.py")
+def simple_function():
+    print("Hello, world!")
+
