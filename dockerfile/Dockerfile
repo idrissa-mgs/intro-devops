@@ -11,6 +11,8 @@ COPY simple-api.py simple-api.py
 # Étape 4 : Installer les dépendances
 RUN pip install --no-cache-dir -r requirements.txt
 
+ENV NAME ="Idrissa"
+
 # Étape 5 : Exposer le port pour FastAPI
 EXPOSE 8000
 
