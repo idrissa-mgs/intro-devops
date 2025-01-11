@@ -14,5 +14,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Étape 5 : Exposer le port pour FastAPI
 EXPOSE 8000
 
-# Étape 6 : Lancer le serveur Uvicorn
-CMD ["uvicorn", "simple-api:app","--reload", "--host", "0.0.0.0", "--port", "8000"]
+# Étape 6 : Définir une variable d'environnement par défaut
+ENV GREETING_NAME="Docker Learner"
+
+# Étape 7 : Lancer le serveur Uvicorn
+CMD ["uvicorn", "simple-api:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
