@@ -11,8 +11,10 @@ COPY simple-api.py simple-api.py
 # Étape 4 : Installer les dépendances
 RUN pip install --no-cache-dir -r requirements.txt
 
+ENV NAME ="Idrissa"
+
 # Étape 5 : Exposer le port pour FastAPI
 EXPOSE 8000
 
 # Étape 6 : Lancer le serveur Uvicorn
-CMD ["uvicorn", "simple-api:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "simple-api:app","--reload", "--host", "0.0.0.0", "--port", "8000"]
