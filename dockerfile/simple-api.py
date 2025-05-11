@@ -8,4 +8,4 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return f"Hello {NAME}! We are learning Docker"
+    return f"Hello {NAME}! We are learning Docker with volumes"
